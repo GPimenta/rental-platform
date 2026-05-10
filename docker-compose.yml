@@ -2,7 +2,9 @@ services:
   postgres:
     image: postgres:alpine
     container_name: postgres
+    restart: always
     volumes:
+      - postgresql_data:/var/lib/postgresql/data
       - ./containers/postgres/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
     env_file:
       - .env
@@ -15,10 +17,29 @@ services:
     networks:
       - postgres_network
 
+  minio:
+    image: minio/minio
+    container_name: minio
+    volumes:
+      - minio-volume:/data
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
+    ports:
+      - "9222:9000"
+      - "9223:9001"
+    networks:
+      - minio_network
+    command: [ "server", "--console-address", ":9001", "/data" ]
+
   volumes:
     postgresql_data:
       driver: local
+    minio-volume:
+      driver: local
+
   networks:
     postgres_network:
       driver: bridge
-
+    minio-network:
+      driver: bridge
