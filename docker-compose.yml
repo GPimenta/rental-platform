@@ -30,16 +30,16 @@ services:
       - "9223:9001"
     networks:
       - minio_network
-    command: [ "server", "--console-address", ":9001", "/data" ]
+    command: ["server", "--console-address", ":9001", "/data"]
 
-  volumes:
-    postgresql_data:
-      driver: local
-    minio-volume:
-      driver: local
+volumes:
+  postgresql_data:
+    driver: local
+  minio-volume:
+    driver: local
 
-  networks:
-    postgres_network:
-      driver: bridge
-    minio-network:
-      driver: bridge
+networks:
+  postgres_network:
+    driver: bridge
+  minio_network:
+    driver: bridge
