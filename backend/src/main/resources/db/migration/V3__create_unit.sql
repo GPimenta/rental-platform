@@ -1,0 +1,9 @@
+CREATE TABLE IF NOT EXISTS unit (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    property_id BIGINT NOT NULL REFERENCES property(id),
+    name VARCHAR(100) NOT NULL,
+    description text NOT NULL,
+    price NUMERIC(10,2) NOT NULL,
+    available BOOLEAN NOT NULL DEFAULT TRUE,
+    created_at TIMESTAMP NOT NULL DEFAULT NOW()
+)

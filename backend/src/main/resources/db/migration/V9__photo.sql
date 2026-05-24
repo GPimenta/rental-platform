@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS photo (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    property_id BIGINT REFERENCES property(id),
+    unit_id BIGINT REFERENCES unit(id),
+    url VARCHAR(500) NOT NULL,
+    caption VARCHAR(255),
+    created_at TIMESTAMP NOT NULL DEFAULT NOW()
+);

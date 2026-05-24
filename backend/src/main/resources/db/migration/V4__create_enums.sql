@@ -1,0 +1,2 @@
+CREATE TYPE application_status AS ENUM ('PENDING', 'APPROVED', 'REJECTED');
+CREATE TYPE payment_status AS ENUM ('PENDING', 'PAID', 'LATE');

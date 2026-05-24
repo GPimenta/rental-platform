@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS feedback (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    lease_id BIGINT NOT NULL REFERENCES lease_agreement(id),
+    author_id BIGINT NOT NULL REFERENCES users(id),
+    message TEXT NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT NOW()
+);
