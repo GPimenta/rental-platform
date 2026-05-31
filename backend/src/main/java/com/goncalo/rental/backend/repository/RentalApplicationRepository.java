@@ -1,4 +1,7 @@
 package com.goncalo.rental.backend.repository;
 
-public class RentalApplicationRepository {
+import com.goncalo.rental.backend.model.entity.RentalApplication;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface RentalApplicationRepository extends JpaRepository<RentalApplication, Long> {
 }

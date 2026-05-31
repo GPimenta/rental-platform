@@ -1,4 +1,7 @@
 package com.goncalo.rental.backend.repository;
 
-public class LeaseAgreementRepository {
+import com.goncalo.rental.backend.model.entity.LeaseAgreement;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface LeaseAgreementRepository extends JpaRepository<LeaseAgreement, Long> {
 }

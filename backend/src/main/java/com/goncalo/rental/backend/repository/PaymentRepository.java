@@ -1,4 +1,7 @@
 package com.goncalo.rental.backend.repository;
 
-public class PaymentRepository {
+import com.goncalo.rental.backend.model.entity.Payment;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface PaymentRepository extends JpaRepository<Payment, Long> {
 }

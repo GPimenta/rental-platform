@@ -1,7 +1,7 @@
-CREATE TABLE IF NOT EXISTS photo (
+CREATE TABLE IF NOT EXISTS photos (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    property_id BIGINT REFERENCES property(id),
-    unit_id BIGINT REFERENCES unit(id),
+    property_id BIGINT REFERENCES properties(id),
+    unit_id BIGINT REFERENCES units(id),
     url VARCHAR(500) NOT NULL,
     caption VARCHAR(255),
     created_at TIMESTAMP NOT NULL DEFAULT NOW()

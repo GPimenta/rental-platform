@@ -1,6 +1,6 @@
-CREATE TABLE IF NOT EXISTS unit (
+CREATE TABLE IF NOT EXISTS units (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    property_id BIGINT NOT NULL REFERENCES property(id),
+    property_id BIGINT NOT NULL REFERENCES properties(id),
     name VARCHAR(100) NOT NULL,
     description text NOT NULL,
     price NUMERIC(10,2) NOT NULL,

@@ -4,36 +4,34 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.mapstruct.Mapper;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "units")
+@Table(name = "photos")
 @Getter
 @Setter
 @NoArgsConstructor
-public class Unit {
+public class Photo {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "property_id", nullable = false)
+    @JoinColumn(name = "property_id")
     private Property property;
 
-    @Column(name = "name", nullable = false, length = 100)
-    private String name;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "unit_id")
+    private Unit unit;
 
-    @Column(name = "description", nullable = false, length = 255)
-    private String description;
+    @Column(name = "url", unique = true, nullable = false,length = 500)
+    private String url;
 
-    @Column(name = "price",unique = true, nullable = false)
-    private BigDecimal price;
-
-    @Column(name = "available", nullable = false)
-    private Boolean available;
+    @Column(name = "caption", nullable = false, length = 255)
+    private String caption;
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;

@@ -1,4 +1,7 @@
 package com.goncalo.rental.backend.repository;
 
-public class PropertyRepository {
+import com.goncalo.rental.backend.model.entity.Property;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface PropertyRepository extends JpaRepository<Property, Long> {
 }
