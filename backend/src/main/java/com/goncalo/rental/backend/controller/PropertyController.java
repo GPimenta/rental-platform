@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/v1/properties")
@@ -25,9 +26,39 @@ public class PropertyController {
         return ResponseEntity.ok(propertyService.getAllProperties());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<PropertyResponse> getProperty(@PathVariable Long id) {
+        try {
+            Optional<PropertyResponse> propertyById = propertyService.getPropertyById(id);
+            return propertyById.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
     @PostMapping
     public ResponseEntity<PropertyResponse> createProperty(@Valid @RequestBody PropertyRequest propertyRequest) {
         PropertyResponse propertyResponse = propertyService.saveProperty(propertyRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(propertyResponse);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<PropertyResponse> updateProperty(@PathVariable Long id, @Valid @RequestBody PropertyRequest propertyRequest) {
+        try {
+            return ResponseEntity.ok(propertyService.putProperty(id, propertyRequest));
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<PropertyResponse> deleteProperty(@PathVariable Long id) {
+        propertyService.deleteProperty(id);
+
+        if (propertyService.getPropertyById(id).isPresent()) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }
