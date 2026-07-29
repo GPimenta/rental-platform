@@ -1,8 +1,6 @@
 package com.goncalo.rental.backend.model.dto.request;
 
-import com.goncalo.rental.backend.model.entity.User;
 import com.goncalo.rental.backend.utils.ApplicationStatus;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class RentalApplicationRequest {
-//    @NotNull(message = "Current status must be filled")
-//    private ApplicationStatus currentStatus;
+public class RentalApplicationStatusRequest {
+    @NotNull(message = "Status is required")
+    private ApplicationStatus currentStatus;
 }

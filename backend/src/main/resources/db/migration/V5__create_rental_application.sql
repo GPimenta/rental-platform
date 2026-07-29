@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS rental_applicationa (
+CREATE TABLE IF NOT EXISTS rental_applications (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     user_id BIGINT NOT NULL references users(id),
     unit_id BIGINT NOT NULL references units(id),

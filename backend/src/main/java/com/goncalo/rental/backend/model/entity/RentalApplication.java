@@ -5,6 +5,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.JdbcType;
+import org.hibernate.dialect.type.PostgreSQLArrayJdbcType;
+import org.hibernate.dialect.type.PostgreSQLEnumJdbcType;
 
 import java.time.LocalDateTime;
 
@@ -26,6 +29,8 @@ public class RentalApplication {
     @JoinColumn(name = "unit_id", nullable = false)
     private Unit unit;
 
+    @Enumerated(EnumType.STRING)
+    @JdbcType(PostgreSQLEnumJdbcType.class)
     @Column(name = "current_status", nullable = false)
     private ApplicationStatus currentStatus;
 

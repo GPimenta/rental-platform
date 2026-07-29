@@ -25,5 +25,4 @@ public class UnitRequest {
     private BigDecimal price;
     @NotNull(message = "Availability is required!")
     private Boolean available;
-
 }
