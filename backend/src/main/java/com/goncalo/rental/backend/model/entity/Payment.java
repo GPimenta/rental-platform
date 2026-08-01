@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.JdbcType;
+import org.hibernate.dialect.type.PostgreSQLEnumJdbcType;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -22,7 +24,7 @@ public class Payment {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "lease_id", nullable = false)
-    private LeaseAgreement leaseId;
+    private LeaseAgreement leaseAgreement;
 
     @Column(name = "amount", nullable = false)
     private BigDecimal amount;
@@ -34,6 +36,7 @@ public class Payment {
     private LocalDateTime paidAt;
 
     @Enumerated(EnumType.STRING)
+    @JdbcType(PostgreSQLEnumJdbcType.class)
     @Column(name = "current_status", nullable = false)
     private PaymentStatus currentStatus;
 

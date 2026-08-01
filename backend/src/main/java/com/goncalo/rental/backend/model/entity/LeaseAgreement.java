@@ -1,10 +1,13 @@
 package com.goncalo.rental.backend.model.entity;
 
 import com.goncalo.rental.backend.utils.ApplicationStatus;
+import com.goncalo.rental.backend.utils.LeaseStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.JdbcType;
+import org.hibernate.dialect.type.PostgreSQLEnumJdbcType;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -34,8 +37,9 @@ public class LeaseAgreement {
     private LocalDate endDate;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "approved_contract", nullable = false)
-    private ApplicationStatus approvedContract;
+    @JdbcType(PostgreSQLEnumJdbcType.class)
+    @Column(name = "lease_status", nullable = false)
+    private LeaseStatus leaseStatus;
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
