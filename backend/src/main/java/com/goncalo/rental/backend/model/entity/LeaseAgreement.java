@@ -9,6 +9,7 @@ import lombok.Setter;
 import org.hibernate.annotations.JdbcType;
 import org.hibernate.dialect.type.PostgreSQLEnumJdbcType;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -40,6 +41,9 @@ public class LeaseAgreement {
     @JdbcType(PostgreSQLEnumJdbcType.class)
     @Column(name = "lease_status", nullable = false)
     private LeaseStatus leaseStatus;
+
+    @Column(name = "rent_amount")
+    private BigDecimal rentAmount;
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
