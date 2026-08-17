@@ -2,6 +2,8 @@ package com.goncalo.rental.backend.model.dto.request;
 
 import com.goncalo.rental.backend.model.entity.LeaseAgreement;
 import com.goncalo.rental.backend.utils.PaymentStatus;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,10 +16,9 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 public class PaymentRequest {
-    private LeaseAgreement leaseId;
+    @NotNull(message = "Amount is required")
+    @DecimalMin(value = "0.0", inclusive = false, message = "Must be greater than zero")
     private BigDecimal amount;
+    @NotNull(message = "DueDate must have a date")
     private LocalDate dueDate;
-    private LocalDateTime paidAt;
-    private PaymentStatus currentStatus;
-
 }
